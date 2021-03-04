@@ -17,10 +17,10 @@ kubectl apply -f crdboperator.yaml
 kubectl get pods
 
 # configure cockroachDB cluster
-more example.yaml
+more crdbnodes.yaml
 
 # apply the cockroachDB cluster configuration
-kubectl apply -f example.yaml
+kubectl apply -f crdbnodes.yaml
 
 # validate the cockroachDB cluster deployment
 kubectl get statefulset
