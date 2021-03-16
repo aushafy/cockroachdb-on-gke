@@ -1,11 +1,15 @@
 # Create single kubernetes cluster with Google Kubernetes Engine
 gcloud container clusters create cockroachdb --machine-type n1-standard-4 --zone asia-southeast1-a --num-nodes 3
 
+# grant the kubernetes cluster credentials, so we can run kubectl from local PC
+gcloud container clusters get-credentials cockroachdb
+
 # Run gcloud info command to get your email
 gcloud info | grep Account
 
 # create cluster role binding to give cockroachDB access to our cluster
-kubectl create clusterrolebinding $USER-cluster-role-binding --clusterrole=cluster-admin --user=aushafy.setyawan@infracom-tech.com
+# kubectl create clusterrolebinding $USER-cluster-role-binding --clusterrole=cluster-admin --user=aushafy.setyawan@infracom-tech.com
+kubectl create clusterrolebinding aushafy-cluster-role-binding --clusterrole=cluster-admin --user=aushafy.setyawan@infracom-tech.com
 
 # apply Custom Resource Definition (CRD) for the cockroachDB operator
 kubectl apply -f crdbcustomresourcedefinition.yaml
